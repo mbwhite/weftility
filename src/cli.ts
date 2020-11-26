@@ -57,7 +57,7 @@ yargs
     )
     .command(
         'register',
-        'Registers CA identity and returns the enrollSecret',
+        'Registers CA identity and returns the Enroll Secret',
         (yargs) => {
             return yargs.options({
                 profile: { alias: 'p', describe: 'Path to the Gateway file', demandOption: true },
@@ -128,7 +128,7 @@ yargs
     )
     .command(
         'export',
-        'Exports IBP identity and adds to application wallet',
+        'Exports IBP identity from an application wallet',
         (yargs) => {
             return yargs.options({
                 wallet: { alias: 'w', describe: 'Path to application wallet', demandOption: true },
@@ -139,10 +139,10 @@ yargs
         },
         async (args) => {
             log({ msg: 'Exporting identity for IBP' });
-            
+
             // resolve the supplied gateway and wallet paths
             const walletPath = resolveWalletPath(args['wallet'] as string, args['createwallet'] as boolean);
-            const idtools = new Identities(walletPath,args['compat'] as boolean);
+            const idtools = new Identities(walletPath, args['compat'] as boolean);
             await idtools.exportFromWallet(args['name'] as string, args['json'] as string);
         },
     )
@@ -202,7 +202,7 @@ yargs
     )
     .command(
         'mspids',
-        'Imports IBP identity to MSP for Peer commands',
+        'Imports IBP identity to MSP directory structure for Fabric Peer commands',
         (yargs) => {
             return yargs.options({
                 mspconfig: { alias: 'd', describe: 'Path to the root directory of the MSP config', demandOption: true },
